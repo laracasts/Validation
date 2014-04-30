@@ -64,3 +64,34 @@ public function store()
 ```
 
 If validation passes, `true` will be returned. Otherwise, a `FormValidationException` exception will be thrown. You can either catch that within your controller, or pass it to, for example, `global.php` for handling. Either works.
+
+The key is that you'll create a dedicated class for each form that you need to validate. For instance, if a user can register for your site, then you'll have a `Registration` form object. Maybe something like:
+
+```php
+<?php namespace MyApp\Forms;
+
+use Laracasts\Validation\FormValidator;
+
+class Registration extends FormValidator {
+
+	/**
+	 * Validation rules for registering
+	 *
+	 * @var array
+	 */
+	protected $rules = [
+		'username' => 'required',
+		'email'    => 'required|unique:users',
+		'age'      => 'required|integer',
+		'gender'   => 'in:male,female',
+		'password' => 'required|confirmed'
+	];
+
+}
+```
+
+Now, just inject this object into your controller or application service, and call a `validate()` method on it.
+
+```php
+$this->registrationForm->validate(Input::all());
+```
