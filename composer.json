@@ -1,6 +1,7 @@
 {
     "name": "laracasts/validation",
     "description": "Easy validation for Laravel applications.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Jeffrey Way",
