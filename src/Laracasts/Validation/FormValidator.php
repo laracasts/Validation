@@ -14,6 +14,11 @@ abstract class FormValidator {
 	 * @var ValidatorInstance
 	 */
 	protected $validation;
+	
+	/**
+	 * @var array
+	 */
+	protected $messages = [];
 
 	/**
 	 * @param ValidatorFactory $validator
@@ -32,7 +37,7 @@ abstract class FormValidator {
 	 */
 	public function validate(array $formData)
 	{
-		$this->validation = $this->validator->make($formData, $this->getValidationRules());
+		$this->validation = $this->validator->make($formData, $this->getValidationRules(), $this->getMessages());
 
 		if ($this->validation->fails())
 		{
@@ -56,6 +61,13 @@ abstract class FormValidator {
 	public function getValidationErrors()
 	{
 		return $this->validation->errors();
+	}
+	
+	/**
+	 * @return array
+	 */
+	public function getMessages(){
+		return $this->messages;
 	}
 
 }
