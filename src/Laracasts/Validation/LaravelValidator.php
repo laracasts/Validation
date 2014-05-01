@@ -24,9 +24,9 @@ class LaravelValidator implements FactoryInterface {
 	 * @param array $rules
 	 * @return \Illuminate\Validation\Validator
 	 */
-	public function make(array $formData, array $rules)
+	public function make(array $formData, array $rules, array $messages = [])
 	{
-		return $this->validator->make($formData, $rules);
+		return $this->validator->make($formData, $rules, $messages);
 	}
 
 }
