@@ -20,7 +20,7 @@ class ValidationServiceProvider extends ServiceProvider {
 	{
 		$this->app->bind(
 			'Laracasts\Validation\FactoryInterface',
-			'Illuminate\Validation\Factory'
+			'Laracasts\Validation\LaravelValidator'
 		);
 	}
 

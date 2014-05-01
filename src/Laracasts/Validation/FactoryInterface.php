@@ -2,11 +2,13 @@
 
 interface FactoryInterface {
 
-	/**
-	 * Initialize validator
-	 *
-	 * @return ValidatorInterface
-	 */
-	public function make();
+    /**
+     * Initialize validator
+     *
+     * @param array $formData
+     * @param array $rules
+     * @return ValidatorInterface
+     */
+	public function make(array $formData, array $rules);
 
 } 
