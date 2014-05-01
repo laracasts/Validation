@@ -2,7 +2,7 @@
 
 ```js
 "require": {
-    "laracasts/validation": "1.*"
+    "laracasts/validation": "~1.0"
 }
 ```
 
