@@ -37,7 +37,11 @@ abstract class FormValidator {
 	 */
 	public function validate(array $formData)
 	{
-		$this->validation = $this->validator->make($formData, $this->getValidationRules(), $this->getMessages());
+		$this->validation = $this->validator->make(
+			$formData,
+			$this->getValidationRules(),
+			$this->getValidationMessages()
+		);
 
 		if ($this->validation->fails())
 		{
@@ -64,9 +68,10 @@ abstract class FormValidator {
 	}
 	
 	/**
-	 * @return array
+	 * @return mixed
 	 */
-	public function getMessages(){
+	public function getValidationMessages()
+	{
 		return $this->messages;
 	}
 

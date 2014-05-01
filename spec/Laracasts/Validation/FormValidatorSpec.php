@@ -19,7 +19,7 @@ class FormValidatorSpec extends ObjectBehavior
 	{
 		$fakeFormData = ['username' => 'joe'];
 
-		$validatorFactory->make($fakeFormData, $this->getValidationRules())->willReturn($validator);
+		$validatorFactory->make($fakeFormData, $this->getValidationRules(), [])->willReturn($validator);
 		$validator->fails()->willReturn(false);
 
 		$this->validate($fakeFormData)->shouldReturn(true);
@@ -29,7 +29,7 @@ class FormValidatorSpec extends ObjectBehavior
 	{
 		$fakeFormData = ['username' => ''];
 
-		$validatorFactory->make($fakeFormData, $this->getValidationRules())->willReturn($validator);
+		$validatorFactory->make($fakeFormData, $this->getValidationRules(), [])->willReturn($validator);
 		$validator->fails()->willReturn(true);
 		$validator->errors()->willReturn([]);
 
