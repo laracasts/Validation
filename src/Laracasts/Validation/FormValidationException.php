@@ -1,19 +1,17 @@
 <?php namespace Laracasts\Validation;
 
-use Illuminate\Support\MessageBag;
-
 class FormValidationException extends \Exception {
 
 	/**
-	 * @var MessageBag
+	 * @var mixed
 	 */
 	protected $errors;
 
 	/**
-	 * @param string     $message
-	 * @param MessageBag $errors
+	 * @param string $message
+	 * @param mixed  $errors
 	 */
-	function __construct($message, MessageBag $errors)
+	function __construct($message, $errors)
 	{
 		$this->errors = $errors;
 
@@ -23,7 +21,7 @@ class FormValidationException extends \Exception {
 	/**
 	 * Get form validation errors
 	 *
-	 * @return MessageBag
+	 * @return mixed
 	 */
 	public function getErrors()
 	{

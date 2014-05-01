@@ -1,12 +1,12 @@
 <?php namespace Laracasts\Validation;
 
-use Illuminate\Validation\Factory as Validator;
-use Illuminate\Validation\Validator as ValidatorInstance;
+use Laracasts\Validation\FactoryInterface as ValidatorFactory;
+use Laracasts\Validation\ValidatorInterface as ValidatorInstance;
 
 abstract class FormValidator {
 
 	/**
-	 * @var Validator
+	 * @var ValidatorFactory
 	 */
 	protected $validator;
 
@@ -16,10 +16,9 @@ abstract class FormValidator {
 	protected $validation;
 
 	/**
-	 *
-	 * @param Validator $validator
+	 * @param ValidatorFactory $validator
 	 */
-	function __construct(Validator $validator)
+	function __construct(ValidatorFactory $validator)
 	{
 		$this->validator = $validator;
 	}
@@ -44,21 +43,17 @@ abstract class FormValidator {
 	}
 
 	/**
-	 * Get the validation rules
-	 *
 	 * @return array
 	 */
-	protected function getValidationRules()
+	public function getValidationRules()
 	{
 		return $this->rules;
 	}
 
 	/**
-	 * Get the validation errors
-	 *
-	 * @return \Illuminate\Support\MessageBag
+	 * @return mixed
 	 */
-	protected function getValidationErrors()
+	public function getValidationErrors()
 	{
 		return $this->validation->errors();
 	}

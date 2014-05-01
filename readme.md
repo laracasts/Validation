@@ -6,6 +6,12 @@
 }
 ```
 
+And then, if using Laravel (not required), add the service provider to `app/config/app.php` in the `providers` array.
+
+```php
+'Laracasts\Validation\ValidationServiceProvider'
+```
+
 ## Usage
 
 Here's an example. Imagine that you need validation for a login form. First, create an object to contain the necessary rules:
