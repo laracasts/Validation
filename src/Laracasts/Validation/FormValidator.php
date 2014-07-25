@@ -91,7 +91,7 @@ abstract class FormValidator {
 		// off of it, and use that.
 		if (is_object($formData))
 		{
-			return get_class_vars(get_class($formData));
+        	return get_object_vars($formData);
 		}
 
 		// Otherwise, we'll just stick with what they provided.
