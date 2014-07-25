@@ -14,7 +14,7 @@ abstract class FormValidator {
 	 * @var ValidatorInstance
 	 */
 	protected $validation;
-	
+
 	/**
 	 * @var array
 	 */
@@ -31,12 +31,14 @@ abstract class FormValidator {
 	/**
 	 * Validate the form data
 	 *
-	 * @param array $formData
+	 * @param  mixed $formData
 	 * @return mixed
 	 * @throws FormValidationException
 	 */
-	public function validate(array $formData)
+	public function validate($formData)
 	{
+		$formData = $this->normalizeFormData($formData);
+
 		$this->validation = $this->validator->make(
 			$formData,
 			$this->getValidationRules(),
@@ -66,13 +68,34 @@ abstract class FormValidator {
 	{
 		return $this->validation->errors();
 	}
-	
+
 	/**
 	 * @return mixed
 	 */
 	public function getValidationMessages()
 	{
 		return $this->messages;
+	}
+
+	/**
+	 * Normalize the provided data to an array.
+	 *
+	 * @param  mixed $formData
+	 * @return array
+	 */
+	protected function normalizeFormData($formData)
+	{
+		// If an object was provided, maybe the user
+		// is giving us something like a DTO.
+		// In that case, we'll grab the public properties
+		// off of it, and use that.
+		if (is_object($formData))
+		{
+			return get_class_vars(get_class($formData));
+		}
+
+		// Otherwise, we'll just stick with what they provided.
+		return $formData;
 	}
 
 }

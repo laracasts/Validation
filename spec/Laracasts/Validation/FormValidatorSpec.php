@@ -35,8 +35,23 @@ class FormValidatorSpec extends ObjectBehavior
 
 		$this->shouldThrow('Laracasts\Validation\FormValidationException')->duringValidate($fakeFormData);
 	}
+
+	function it_accepts_a_command_object_in_lieu_of_an_input_array(FactoryInterface $validatorFactory, ValidatorInterface $validator)
+	{
+		$formDataAsCommand = new CommandStub;
+		$formDataCastToArray = get_class_vars(get_class($formDataAsCommand));
+
+		$validatorFactory->make($formDataCastToArray, $this->getValidationRules(), [])->willReturn($validator);
+
+		$this->validate($formDataAsCommand)->shouldReturn(true);
+
+	}
 }
 
 class ExampleValidator extends \Laracasts\Validation\FormValidator {
 	protected $rules = ['username' => 'required'];
+}
+
+class CommandStub {
+    public $username = 'JohnDoe';
 }
