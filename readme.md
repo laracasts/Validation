@@ -1,3 +1,5 @@
+> If you are using Laravel 4.3, this package is unnecessary. Instead, leverage the new form request classes to perform your validation.
+
 ## Install With Composer
 
 ```js
